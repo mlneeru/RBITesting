@@ -1,0 +1,21 @@
+.sections-data {
+    height: 92vh;
+    width: 100%;
+}
+
+.TitleLabel {
+    font-family: block_pro, sans-serif;
+    font: 100% / 1.5 Barlow, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    color: rgb(50, 50, 49);
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    margin: 0px auto;
+    font-size: 0.9375rem;
+}
+
+.navbar-item {
+    cursor: pointer;
+}
