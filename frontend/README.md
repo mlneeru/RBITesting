@@ -4,10 +4,11 @@ In this challenge you will build a basic React application that lets a customer 
 
 ## Instructions
 
-As part of the interview process we would like you to complete a coding challenge that demonstrates your knowledge of JavaScript and React which our entire codebase is built on. 
+As part of the interview process we would like you to complete a coding challenge that demonstrates your knowledge of JavaScript and React which our entire codebase is built on.
 
-When you complete the challenge: 
-- Upload your code to a Github private repo and share with [__smchalal__](https://github.com/smchalal), [__gabceb__](https://github.com/gabceb), [__jonrose-dev__](https://github.com/jonrose-dev), [__kylefinley__](https://github.com/kylefinley)
+When you complete the challenge:
+
+- Upload your code to a Github private repo and share with [**smchalal**](https://github.com/smchalal), [**gabceb**](https://github.com/gabceb), [**jonrose-dev**](https://github.com/jonrose-dev), [**kylefinley**](https://github.com/kylefinley)
 - Email ctg-hiring@rbi.com
 
 ## Initial Setup
@@ -15,6 +16,13 @@ When you complete the challenge:
 1. Run `npm install` or `yarn`
 2. Run `npm start` or `yarn start`
 3. Open your browser to [localhost:3000](http://localhost:3000)
+
+## IMPORTANT NOTE REGARDING CORS ISSUE LOCALLY
+
+To fix Cross-Origin Resource Sharing (CORS) issue and test locally, please run this command,
+open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security
+
+DO NOT USE THIS ON STAGE OR PRODUCTION.
 
 ## General Guidelines
 
@@ -32,12 +40,13 @@ Overall we're looking for a jumping off point to have a conversation about your 
 1. At the top of the page display a navigation bar containing the sections from the menu. These should be displayed horizontally with their respective carousel image and name. The content for this menu should be fetched from the API (see below for API data).
 
 2. Below the navigation bar show a grid of all the elements within the current selection. The cards should be in a 3-column layout, one item per column.
+
    1. If the user is on the main menu the elements should be the same as the top navigation bar.
    2. If the user has selected a section then it should be of all the items belonging to the selected section.
 
 3. Each section in the top menu should be clickable, and when clicked the tiles should reflect the items that belong to the selected section. The selected section in the navigation bar should be styled in some way to indicate that it is the active filter.
 
-4. The user should be able to navigate their browsing history and be able to go backwards and forwards through the sections they have viewed. 
+4. The user should be able to navigate their browsing history and be able to go backwards and forwards through the sections they have viewed.
 
 ## API Data
 

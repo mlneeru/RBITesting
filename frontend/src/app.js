@@ -1,11 +1,10 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { getMenuList, getAllSections, getAllItems } from './api';
-import { Test } from './Components/Test/Test';
+import { Tile } from './Components/Tile/tile';
+import { Footer } from './Components/Footer/footer';
+
 import { cloneDeep } from 'lodash';
-// import { Menu } from './Components/Menu/Menu';
-// import { Sections } from './Components/Sections/Sections';
 import './app.css';
 export class App extends React.Component {
   state = {
@@ -13,6 +12,7 @@ export class App extends React.Component {
     sectionList: [],
     itemsList: [],
     showSections: true,
+    selectedSectionID: '',
   };
 
   componentDidMount() {
@@ -54,7 +54,6 @@ export class App extends React.Component {
         return { itemsList: allItemsList };
       });
     });
-    debugger;
   }
 
   getSectionsList() {
@@ -67,12 +66,15 @@ export class App extends React.Component {
       });
     });
     this.setState(() => {
-      return { mainList: parsedSectionData, showSections: true };
+      return {
+        mainList: parsedSectionData,
+        showSections: true,
+        selectedSectionID: '',
+      };
     });
   }
 
   getItemsListUnderASection(sectionID, showSections) {
-    debugger;
     this.setState((state) => {
       const itemsListInderSection = [];
       const selectedSection = cloneDeep(
@@ -93,67 +95,120 @@ export class App extends React.Component {
           }
         });
       }
-      return { mainList: itemsListInderSection, showSections };
+
+      return {
+        mainList: itemsListInderSection,
+        showSections,
+        selectedSectionID: sectionID,
+      };
     });
   }
 
   updateItemList = (id) => {
     this.getItemsListUnderASection(id, false);
   };
+  getImagePath(imageID) {
+    if (imageID) {
+      return '../../images/'.concat(imageID);
+    }
+    return null;
+  }
+  handleClickLocale = () => {
+    alert('you clicked EN ESPANOL');
+  };
+  handleClickCoupon = () => {
+    alert('you clicked on Have a coupon');
+  };
   render() {
-    // const burgerKing = './images/bcbb978bdb882ce6ef2304747f3111a6a76c8a49.png';
-
-    const burgerKing = './images/burgerkinglogo.png';
+    const burgerKing = './images/e1c01c470dbeb57a7d69a076f947b0d6d06753d8.png';
 
     return (
-      <>
-        {/* <div className="sections-data">
-          <Menu sectionList={this.state.sectionList} itemsList={this.state.itemsList} />
-        </div> */}
-        <nav className="navbar navbar-default">
-          <div className="container-fluid">
-            <ul className="nav navbar-nav">
-              <li className="active navbar-item">
-                <a
-                  className="testing"
-                  //   href="#"
-                  onClick={() => this.getSectionsList()}
+      <div className="app">
+        <div classNam="container">
+          <nav className="navbar navbar-default">
+            <div className="container-fluid">
+              <ul className="nav navbar-nav">
+                <li
+                  className={`navbarItem ${
+                    this.state.selectedSectionID === '' ? 'activeNavbar' : ''
+                  }`}
                 >
-                  <div>
-                    <img
-                      src={burgerKing}
-                      style={{ height: '100%' }}
-                      alt="BurgerKing"
-                    />
-                  </div>
-                  <span class="TitleLabel">Home</span>
-                </a>
-              </li>
-              {this.state.sectionList.map((item) => {
-                return (
-                  <li key={item._id} className="navbar-item">
-                    <a
-                      onClick={() =>
-                        this.getItemsListUnderASection(item._id, true)
-                      }
+                  <a
+                    className="sectionsList"
+                    onClick={() => this.getSectionsList()}
+                  >
+                    <div className="imageContainer">
+                      <img
+                        src={burgerKing}
+                        className="imageStyle"
+                        alt="BurgerKing"
+                      />
+                    </div>
+                    <div className="imageLabel">
+                      <span
+                        class={`titleLabel ${
+                          this.state.selectedSectionID === ''
+                            ? 'activeSection'
+                            : ''
+                        }`}
+                      >
+                        Menu
+                      </span>
+                    </div>
+                  </a>
+                </li>
+                {this.state.sectionList.map((item) => {
+                  return (
+                    <li
+                      key={item._id}
+                      className={`navbarItem ${
+                        this.state.selectedSectionID === item._id
+                          ? 'activeNavbar'
+                          : ''
+                      }`}
                     >
-                      {item.name.en}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </nav>
+                      <a
+                        onClick={() =>
+                          this.getItemsListUnderASection(item._id, true)
+                        }
+                        className="sectionsList"
+                      >
+                        <div className="imageContainer">
+                          <img
+                            src={this.getImagePath(item.image.asset._ref)}
+                            className="imageStyle"
+                            alt={item.image.asset._ref}
+                          />
+                        </div>
+                        <div className="imageLabel">
+                          <span
+                            class={`titleLabel ${
+                              this.state.selectedSectionID === item._id
+                                ? 'activeSection'
+                                : ''
+                            }`}
+                          >
+                            {item.name.en}
+                          </span>
+                        </div>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </nav>
+        </div>
 
         <div className="sections-data">
-          <Test
+          <Tile
             list={cloneDeep(this.state.mainList)}
             updateItemsList={this.updateItemList}
             showSections={this.state.showSections}
           />
         </div>
-      </>
+        <Footer />
+      </div>
     );
   }
 }

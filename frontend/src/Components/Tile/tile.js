@@ -1,7 +1,7 @@
 import React from 'react';
-import '../Test/test.css';
+import './tile.css';
 
-export class Test extends React.Component {
+export class Tile extends React.Component {
   state = {
     menuList: [],
   };
@@ -21,7 +21,7 @@ export class Test extends React.Component {
 
   render() {
     return (
-      <div className="section-container">
+      <div className="sectionContainer">
         {(this.props.list ? this.props.list : []).map((item) => {
           return (
             <div
@@ -29,15 +29,19 @@ export class Test extends React.Component {
               className="section"
               key={item.imageID}
             >
-              <div className="section-image">
+              <div className="sectionImage">
                 <img
-                  style={{ height: '100%' }}
+                  style={{
+                    height: '100%',
+                    width: '100%',
+                    borderRadius: '1.75rem',
+                  }}
                   src={this.getImagePath(item.imageID)}
                   alt={item.imageID}
                 />
               </div>
 
-              <div className="section-name">{item.name}</div>
+              <div className="sectionName">{item.name}</div>
             </div>
           );
         })}

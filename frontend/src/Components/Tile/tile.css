@@ -1,0 +1,35 @@
+.sectionContainer {
+  height: 100%;
+  width: 100%;
+  align-content: flex-start;
+  width: 65%;
+  margin: auto;
+  padding-top: 13rem;
+}
+
+.section {
+  height: 34rem;
+  width: 28%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 1.75rem;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+
+.section:hover {
+  cursor: pointer;
+}
+
+.sectionImage {
+  height: 80%;
+  text-align: center;
+}
+
+.sectionName {
+  text-align: center;
+  font-size: larger;
+  padding-top: 2rem;
+  font-weight: bold;
+}
