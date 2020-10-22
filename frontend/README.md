@@ -1,6 +1,3 @@
-# RBI Consumer Technology: Tech Interview Challenge
-
-In this challenge you will build a basic React application that lets a customer view the menu at a restaurant.
 
 ## Instructions
 
